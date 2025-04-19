@@ -1,0 +1,47 @@
+@host = http://localhost:5118
+@adminToken =
+@stuToken =
+
+### Admin Login
+@host = http://localhost:5118
+
+### Login
+# This logs in and defines the token variable
+POST {{host}}/api/Auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin1!"
+}
+
+> {% 
+    client.global.set("token", response.body.token); 
+%}
+
+
+### Student Login
+POST {{host}}/api/Auth/login
+{ "username":"stud","password":"Stud1!" }
+> {stuToken} := $.token
+
+### Get All Courses (Anonymous)
+GET {{host}}/api/CoursesApi
+
+### Create Course (Admin only)
+POST {{host}}/api/CoursesApi
+Authorization: Bearer {{adminToken}}
+{ "name":"DB","credits":3,"departmentId":1,"professorId":1 }
+
+### Student Tries to Create Course (Should 403)
+POST {{host}}/api/CoursesApi
+Authorization: Bearer {{stuToken}}
+...
+
+### Enroll Student (Admin)
+POST {{host}}/api/StudentsApi/2/enroll/1
+Authorization: Bearer {{adminToken}}
+
+### Get Course with Students
+GET {{host}}/api/CoursesApi/1
+Authorization: Bearer {{adminToken}}

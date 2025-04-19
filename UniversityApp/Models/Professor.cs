@@ -17,7 +17,7 @@ namespace UniversityApp.Models
         [Required]
         public int DepartmentId { get; set; }
 
-        public Department? Department { get; set; } // Now nullable, avoids validation issue
+        public Department? Department { get; set; } 
 
         public ICollection<Course> Courses { get; set; } = new List<Course>();
     }

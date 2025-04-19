@@ -12,8 +12,6 @@ namespace UniversityApp.Models
 
         [Required(ErrorMessage = "Department name is required.")]
         public string Name { get; set; }
-
-        // Navigation
         public ICollection<Professor> Professors { get; set; } = new List<Professor>();
         public ICollection<Course> Courses { get; set; } = new List<Course>();
         public ICollection<Student> Students { get; set; } = new List<Student>();
