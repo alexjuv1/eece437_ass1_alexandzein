@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.AssemblyInfo.cs
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.sourcelink.json
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\bin\Debug\net8.0\UniversityApp.Application.deps.json
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\bin\Debug\net8.0\UniversityApp.Application.dll
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\bin\Debug\net8.0\UniversityApp.Application.pdb
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\bin\Debug\net8.0\UniversityApp.core.dll
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\bin\Debug\net8.0\UniversityApp.core.pdb
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\Universi.37594F46.Up2Date
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.dll
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\refint\UniversityApp.Application.dll
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\UniversityApp.Application.pdb
+C:\Users\Lenovo\Desktop\AUB\Completed semesters\E4\437\eece437_ass1_alexandzein\UniversityApp.Application\obj\Debug\net8.0\ref\UniversityApp.Application.dll

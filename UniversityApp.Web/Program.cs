@@ -1,36 +1,28 @@
-using MediatR;
-using AutoMapper;
-using UniversityApp.Application.Features.Products.Handlers;
-using UniversityApp.Web.Mappings;
-using UniversityApp.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using UniversityApp.Infrastructure.Persistence;
+using UniversityApp.Core.Interfaces;
+using UniversityApp.Infrastructure.Persistence.Repositories;
 
-var builder = WebApplication.CreateBuilder(args); // ✅ REQUIRED FIRST LINE
+var builder = WebApplication.CreateBuilder(args);
 
+// ── Add EF Core + SQLite ──────────────────────────────────────────────
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// ── Register Repositories ─────────────────────────────────────────────
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IProfessorRepository, ProfessorRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
+// ── MVC setup (you’ll add MediatR, AutoMapper, etc. later) ────────────
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(CreateProductHandler).Assembly));
-
-builder.Services.AddAutoMapper(typeof(ProductProfile).Assembly);
-
-builder.Services.AddInfrastructure("Data Source=universityapp.db");
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+// ── Minimal “smoke test” endpoint ────────────────────────────────────
+// Fetch all students via your new StudentRepository
+app.MapGet("/api/students", async (IStudentRepository repo) =>
+    Results.Ok(await repo.GetAllAsync()));
 
 app.Run();
