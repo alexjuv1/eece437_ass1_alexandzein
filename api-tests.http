@@ -1,0 +1,183 @@
+@host = http://localhost:5118
+@adminToken = Bearer <PASTE_STUDENT_TOKEN_HERE>
+@stuToken = Bearer <PASTE_STUDENT_TOKEN_HERE>
+
+#When you click long in on admin login and generate a token paste it ^ in admin token 
+
+
+
+### 🔐 Admin Login
+POST {{host}}/api/Auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin1!"
+}
+
+### 👩‍🎓 Student Login
+POST {{host}}/api/Auth/login
+Content-Type: application/json
+
+{
+  "username": "stud",
+  "password": "Stud1!"
+}
+
+### 📄 Get All Departments
+GET {{host}}/api/DepartmentsApi
+Authorization: {{adminToken}}
+
+### ➕ Create Department
+POST {{host}}/api/DepartmentsApi
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "name": "Mechanical  engf Engineering"
+}
+
+### ✏️ Update Department
+PUT {{host}}/api/DepartmentsApi/6
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "departmentId": 6,
+  "name": "Updated Department"
+}
+
+### ❌ Delete Department (Student)
+DELETE {{host}}/api/DepartmentsApi/1
+Authorization: {{stuToken}}
+
+### ✅ Delete Department (Admin)
+DELETE {{host}}/api/DepartmentsApi/1
+Authorization: {{adminToken}}
+
+---
+
+### 📚 Get All Courses
+GET {{host}}/api/CoursesApi
+
+### ➕ Create Course
+POST {{host}}/api/CoursesApi
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "name": "Intro to AI",
+  "credits": 3,
+  "departmentId": 1,
+  "professorId": 1
+}
+
+### ✏️ Update Course
+PUT {{host}}/api/CoursesApi/1
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "courseId": 1,
+  "name": "Advanced AI",
+  "credits": 4,
+  "departmentId": 1,
+  "professorId": 1
+}
+
+### ❌ Student Tries to Update Course
+PUT {{host}}/api/CoursesApi/1
+Content-Type: application/json
+Authorization: {{stuToken}}
+
+{
+  "courseId": 1,
+  "name": "Fake Course",
+  "credits": 1,
+  "departmentId": 1,
+  "professorId": 1
+}
+
+### ✅ Delete Course (Admin)
+DELETE {{host}}/api/CoursesApi/1
+Authorization: {{adminToken}}
+
+---
+
+### 👨‍🏫 Get All Professors
+GET {{host}}/api/ProfessorsApi
+Authorization: {{adminToken}}
+
+### ➕ Create Professor
+POST {{host}}/api/ProfessorsApi
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "name": "Dr. Ahmad Zidan",
+  "email": "zidan@uni.com",
+  "departmentId": 5
+}
+
+### ✏️ Update Professor
+PUT {{host}}/api/ProfessorsApi/1
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "professorId": 7,
+  "name": "Dr. Zidan Updated",
+  "email": "zidan@uni.com",
+  "departmentId": 5
+}
+
+### ❌ Delete Professor (Student)
+DELETE {{host}}/api/ProfessorsApi/1
+Authorization: {{stuToken}}
+
+### ✅ Delete Professor (Admin)
+DELETE {{host}}/api/ProfessorsApi/1
+Authorization: {{adminToken}}
+
+---
+
+### 👨‍🎓 Get All Students
+GET {{host}}/api/StudentsApi
+Authorization: {{adminToken}}
+
+### ➕ Create Student
+POST {{host}}/api/StudentsApi
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "name": "Sara Mahmoud",
+  "email": "sara@uni.com",
+  "enrollmentYear": 2022,
+  "departmentId": 5
+}
+
+### ✏️ Update Student
+PUT {{host}}/api/StudentsApi/1
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+  "studentId": 1,
+  "name": "Sara Mahmoud",
+  "email": "sara@uni.com",
+  "enrollmentYear": 2022,
+  "departmentId": 1
+}
+
+### 🧑‍🏫 Enroll Student in Course
+POST {{host}}/api/StudentsApi/1/enroll/1
+Authorization: {{adminToken}}
+
+### ✅ Delete Student (Admin)
+DELETE {{host}}/api/StudentsApi/1
+Authorization: {{adminToken}}
+
+### ❌ Delete Student (Student)
+DELETE {{host}}/api/StudentsApi/1
+Authorization: {{stuToken}}
