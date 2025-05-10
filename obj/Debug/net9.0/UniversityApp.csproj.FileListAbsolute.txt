@@ -769,3 +769,4 @@ C:\Users\Zeink\OneDrive\Desktop\eece437_ass1_alexandzein-finalsubmission\obj\Deb
 C:\Users\Zeink\OneDrive\Desktop\eece437_ass1_alexandzein-finalsubmission\obj\Debug\net9.0\UniversityApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Zeink\OneDrive\Desktop\eece437_ass1_alexandzein-finalsubmission\obj\Debug\net9.0\UniversityApp.RazorAssemblyInfo.cache
 C:\Users\Zeink\OneDrive\Desktop\eece437_ass1_alexandzein-finalsubmission\obj\Debug\net9.0\UniversityApp.RazorAssemblyInfo.cs
+C:\Users\Zeink\OneDrive\Desktop\eece437_ass1_alexandzein-finalsubmission\obj\Debug\net9.0\UniversityApp.sourcelink.json
