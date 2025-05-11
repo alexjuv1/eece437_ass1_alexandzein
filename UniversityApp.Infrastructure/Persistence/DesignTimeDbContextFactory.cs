@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using UniversityApp.Infrastructure.Persistence;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace UniversityApp.Infrastructure.Persistence
 {
@@ -8,10 +9,16 @@ namespace UniversityApp.Infrastructure.Persistence
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlite("Data Source=universityapp.db");
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            return new AppDbContext(optionsBuilder.Options);
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseSqlite(config.GetConnectionString("DefaultConnection"))
+                .Options;
+
+            return new AppDbContext(options);
         }
     }
 }

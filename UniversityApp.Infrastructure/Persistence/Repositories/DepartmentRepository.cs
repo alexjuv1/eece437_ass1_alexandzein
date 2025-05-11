@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UniversityApp.Core.Entities;
 using UniversityApp.Core.Interfaces;
@@ -10,29 +8,25 @@ namespace UniversityApp.Infrastructure.Persistence.Repositories
     public class DepartmentRepository : IDepartmentRepository
     {
         private readonly AppDbContext _context;
-        public DepartmentRepository(AppDbContext context) => _context = context;
 
-        public async Task<Department> GetByIdAsync(int departmentId)
+        public DepartmentRepository(AppDbContext context)
         {
-            return await _context.Departments
-                .Include(d => d.Professors)
-                .Include(d => d.Courses)
-                .Include(d => d.Students)
-                .FirstOrDefaultAsync(d => d.DepartmentId == departmentId);
+            _context = context;
         }
 
-        public async Task<IReadOnlyList<Department>> GetAllAsync()
+        public async Task<List<Department>> GetAllAsync()
         {
-            return await _context.Departments
-                .Include(d => d.Professors)
-                .Include(d => d.Courses)
-                .Include(d => d.Students)
-                .ToListAsync();
+            return await _context.Departments.ToListAsync();
+        }
+
+        public async Task<Department?> GetByIdAsync(int id)
+        {
+            return await _context.Departments.FindAsync(id);
         }
 
         public async Task AddAsync(Department department)
         {
-            await _context.Departments.AddAsync(department);
+            _context.Departments.Add(department);
             await _context.SaveChangesAsync();
         }
 

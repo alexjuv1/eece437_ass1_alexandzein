@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UniversityApp.Core.Entities;
 using UniversityApp.Core.Interfaces;
@@ -10,31 +8,25 @@ namespace UniversityApp.Infrastructure.Persistence.Repositories
     public class CourseRepository : ICourseRepository
     {
         private readonly AppDbContext _context;
-        public CourseRepository(AppDbContext context) => _context = context;
 
-        public async Task<Course> GetByIdAsync(int courseId)
+        public CourseRepository(AppDbContext context)
         {
-            return await _context.Courses
-                .Include(c => c.Department)
-                .Include(c => c.Professor)
-                .Include(c => c.StudentCourses)
-                    .ThenInclude(sc => sc.Student)
-                .FirstOrDefaultAsync(c => c.CourseId == courseId);
+            _context = context;
         }
 
-        public async Task<IReadOnlyList<Course>> GetAllAsync()
+        public async Task<List<Course>> GetAllAsync()
         {
-            return await _context.Courses
-                .Include(c => c.Department)
-                .Include(c => c.Professor)
-                .Include(c => c.StudentCourses)
-                    .ThenInclude(sc => sc.Student)
-                .ToListAsync();
+            return await _context.Courses.ToListAsync();
+        }
+
+        public async Task<Course?> GetByIdAsync(int id)
+        {
+            return await _context.Courses.FindAsync(id);
         }
 
         public async Task AddAsync(Course course)
         {
-            await _context.Courses.AddAsync(course);
+            _context.Courses.Add(course);
             await _context.SaveChangesAsync();
         }
 

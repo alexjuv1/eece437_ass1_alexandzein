@@ -1,4 +1,3 @@
-// File: UniversityApp.Application/Features/Students/Commands/DeleteStudentCommand.cs
 using MediatR;
 using UniversityApp.Application.Common;
 

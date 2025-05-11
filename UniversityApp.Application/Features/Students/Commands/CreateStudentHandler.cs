@@ -1,10 +1,9 @@
-// File: UniversityApp.Application/Features/Students/Commands/CreateStudentHandler.cs
 using MediatR;
+using AutoMapper;
 using UniversityApp.Application.Common;
 using UniversityApp.Application.DTOs;
 using UniversityApp.Core.Entities;
 using UniversityApp.Core.Interfaces;
-using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,11 +16,11 @@ namespace UniversityApp.Application.Features.Students.Commands
 
         public CreateStudentHandler(IStudentRepository repo, IMapper mapper)
         {
-            _repo = repo;
+            _repo   = repo;
             _mapper = mapper;
         }
 
-        public async Task<Result<StudentDto>> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
+        public async Task<Result<StudentDto>> Handle(CreateStudentCommand request, CancellationToken ct)
         {
             var entity = _mapper.Map<Student>(request.Student);
             await _repo.AddAsync(entity);

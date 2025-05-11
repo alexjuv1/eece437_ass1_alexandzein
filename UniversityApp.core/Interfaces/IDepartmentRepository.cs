@@ -1,12 +1,13 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UniversityApp.Core.Entities;
 
-public interface IDepartmentRepository
+namespace UniversityApp.Core.Interfaces
+{
+    public interface IDepartmentRepository
     {
-        Task<Department> GetByIdAsync(int departmentId);
-        Task<IReadOnlyList<Department>> GetAllAsync();
+        Task<List<Department>> GetAllAsync();
+        Task<Department?> GetByIdAsync(int id);
         Task AddAsync(Department department);
         Task UpdateAsync(Department department);
         Task DeleteAsync(Department department);
     }
+}

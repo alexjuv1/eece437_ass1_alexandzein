@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UniversityApp.Core.Entities;
 using UniversityApp.Core.Interfaces;
@@ -10,27 +8,25 @@ namespace UniversityApp.Infrastructure.Persistence.Repositories
     public class StudentRepository : IStudentRepository
     {
         private readonly AppDbContext _context;
-        public StudentRepository(AppDbContext context) => _context = context;
 
-        public async Task<Student> GetByIdAsync(int studentId)
+        public StudentRepository(AppDbContext context)
         {
-            return await _context.Students
-                .Include(s => s.StudentCourses)
-                    .ThenInclude(sc => sc.Course)
-                .FirstOrDefaultAsync(s => s.StudentId == studentId);
+            _context = context;
         }
 
-        public async Task<IReadOnlyList<Student>> GetAllAsync()
+        public async Task<List<Student>> GetAllAsync()
         {
-            return await _context.Students
-                .Include(s => s.StudentCourses)
-                    .ThenInclude(sc => sc.Course)
-                .ToListAsync();
+            return await _context.Students.ToListAsync();
+        }
+
+        public async Task<Student?> GetByIdAsync(int id)
+        {
+            return await _context.Students.FindAsync(id);
         }
 
         public async Task AddAsync(Student student)
         {
-            await _context.Students.AddAsync(student);
+            _context.Students.Add(student);
             await _context.SaveChangesAsync();
         }
 

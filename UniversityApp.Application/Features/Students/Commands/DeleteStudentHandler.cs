@@ -1,4 +1,3 @@
-// File: UniversityApp.Application/Features/Students/Commands/DeleteStudentHandler.cs
 using MediatR;
 using UniversityApp.Application.Common;
 using UniversityApp.Core.Interfaces;
@@ -11,16 +10,13 @@ namespace UniversityApp.Application.Features.Students.Commands
     {
         private readonly IStudentRepository _repo;
 
-        public DeleteStudentHandler(IStudentRepository repo)
-        {
-            _repo = repo;
-        }
+        public DeleteStudentHandler(IStudentRepository repo) => _repo = repo;
 
-        public async Task<Result<bool>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+        public async Task<Result<bool>> Handle(DeleteStudentCommand request, CancellationToken ct)
         {
             var entity = await _repo.GetByIdAsync(request.StudentId);
             if (entity == null)
-                return Result<bool>.Fail($"Student with ID {request.StudentId} not found.");
+                return Result<bool>.Fail($"Student {request.StudentId} not found");
 
             await _repo.DeleteAsync(entity);
             return Result<bool>.Ok(true);
